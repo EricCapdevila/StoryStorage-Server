@@ -16,7 +16,7 @@ const {
 
 // POST '/projects' => to post a new projects
 
-router.post('/', isLoggedIn(), (req,res)=> {
+router.post('/addProject', isLoggedIn(), (req,res)=> {
   const{title, genre, summary} = req.body;
   Project.create({title, genre, summary, author:req.session.currentUser})
     .then((res)=>{
@@ -31,22 +31,22 @@ router.post('/', isLoggedIn(), (req,res)=> {
     })
 })
 
-// -----------------------------vvv TO CHANGE vvv-----------------------------------------
 
 // GET '/projects'=> to get all the projects
 
-router.get('/projects', (req,res)=>{
+router.get('/', (req,res)=>{
   Project.find()//.populate('characters') // gets the objects in tasks
-    .then((allProjects) => {
-      res.json(allProjects)
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .json(err)
-    })
+  .then((allProjects) => {
+    res.json(allProjects)
+  })
+  .catch((err) => {
+    res
+    .status(500)
+    .json(err)
+  })
 })
 
+// -----------------------------vvv TO CHANGE vvv-----------------------------------------
 
 
 // GET '/api/projects/:id'=> to get a specific projects
