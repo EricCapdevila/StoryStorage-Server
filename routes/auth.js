@@ -16,6 +16,19 @@ router.get('/me', isLoggedIn(), (req, res, next) => {
   res.json(req.session.currentUser);
 });
 
+
+router.get('/users', (req,res)=>{
+  User.find()//.populate('stories') // gets the objects in tasks
+    .then((allUsers) => {
+      res.json(allUsers)
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json(err)
+    })
+})
+
 router.post(
   '/login',
   isNotLoggedIn(),
@@ -43,7 +56,7 @@ router.post(
   isNotLoggedIn(),
   validationLoggin(),
   async (req, res, next) => {
-    const { username, password } = req.body;
+    const { username, password} = req.body;
 
     try {
       const user = await User.findOne({ username }, 'username');
