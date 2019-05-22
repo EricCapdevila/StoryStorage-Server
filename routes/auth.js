@@ -13,12 +13,21 @@ const {
 } = require('../helpers/middlewares');
 
 router.get('/me', isLoggedIn(), (req, res, next) => {
-  res.json(req.session.currentUser);
+  User.findById(req.session.currentUser)
+  .then((user) => {
+    res.json(user);
+  })
+  .catch((err) => {
+    res
+      .status(500)
+      .json(err)
+  })
+  
 });
 
 
 router.get('/users', (req,res)=>{
-  User.find()//.populate('stories') // gets the objects in tasks
+  User.find()//.populate('stories') 
     .then((allUsers) => {
       res.json(allUsers)
     })
