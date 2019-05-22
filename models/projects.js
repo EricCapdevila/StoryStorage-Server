@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const projectSchema = new Schema({
   title: String,
   genre:{type: String, enum: ['Historical', 'Crime', 'Science Fiction','Fantasy', 'Romance', 'Horror', 'Other']},
-  Summary: String,
+  summary: String,
   chapters:[{title:String, plot:String }],
-  characters:[{type: Schema.Types.ObjectId, ref: 'Characters'}],
+  characters:[{type: Schema.Types.ObjectId, ref: 'Character'}],
   locations:[String],
   timeline:[String],
   misc:[{title: String, description:String}],
