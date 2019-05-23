@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const characterSchema = new Schema({
-  story: {type: Schema.Types.ObjectId, ref:'Story'},
+  project: {type: Schema.Types.ObjectId, ref:'Project'},
   name: String,
   bio: String,
   drives:[String],

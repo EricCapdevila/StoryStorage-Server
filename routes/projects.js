@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router()
-const mongoose = require('mongoose'); // we sue require in the backend, import in the front
+const mongoose = require('mongoose'); 
 
 const User = require('../models/user')
 const Character = require('../models/characters')
@@ -21,16 +21,16 @@ router.post('/addProject', isLoggedIn(), (req,res)=> {
 
   Project.create({title, genre, summary, author:req.session.currentUser._id})
   .then((newProject) => {
-    User.findByIdAndUpdate(req.session.currentUser._id, {$push: {stories: newProject._id}})
-      .then((res) => {
+    User.findByIdAndUpdate(req.session.currentUser._id, {$push: {stories: newProject._id}},{ new: true})
+      .then((project) => {
         res 
           .status(201)
-          .json(res)
+          .json(project)
       })
       .catch((err) => {
         res
           .status(500)
-          .json(res)
+          .json(err)
       })
   })
   .catch((err) => {
@@ -44,7 +44,7 @@ router.post('/addProject', isLoggedIn(), (req,res)=> {
 // GET '/projects'
 
 router.get('/', (req,res)=>{
-  Project.find()//.populate('characters') // gets the objects in tasks
+  Project.find()
   .then((allProjects) => {
     res.json(allProjects)
   })
@@ -114,9 +114,8 @@ router.delete('/:id', isLoggedIn(), (req,res) =>{
   })
  })
 
-// -----------------------------vvv TO CHANGE vvv-----------------------------------------
 
-// PUT '/api/projects/:id'=> to update a specific project
+// PUT '/api/projects/:id'
 
 router.put('/:id', (req,res) =>{
   const {id} = req.params;
