@@ -16,7 +16,7 @@ const {
 
 // POST '/projects/addProject' 
 
-router.post('/addProject', isLoggedIn(), (req,res)=> {
+router.post('/', isLoggedIn(), (req,res)=> {
   const{title, genre, summary} = req.body;
 
   Project.create({title, genre, summary, author:req.session.currentUser._id})
