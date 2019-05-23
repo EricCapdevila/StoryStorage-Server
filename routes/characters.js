@@ -89,7 +89,6 @@ router.delete('/:id', isLoggedIn(), (req,res) =>{
       .json(res)
     })
   })
-  
 
 router.put('/:id', isLoggedIn(), (req,res) =>{
   const {id} = req.params;
