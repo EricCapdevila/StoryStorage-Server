@@ -17,9 +17,9 @@ const {
 // POST '/projects/addProject' 
 
 router.post('/', isLoggedIn(), (req,res)=> {
-  const{title, genre, summary} = req.body;
+  const{title, genre, summary, isPrivate} = req.body;
 
-  Project.create({title, genre, summary, author:req.session.currentUser._id})
+  Project.create({title, genre, summary, isPrivate, author:req.session.currentUser._id})
   .then((newProject) => {
     User.findByIdAndUpdate(req.session.currentUser._id, {$push: {stories: newProject._id}},{ new: true})
       .then((project) => {
