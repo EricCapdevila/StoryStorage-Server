@@ -126,9 +126,9 @@ router.put('/:id', (req,res) =>{
       .json({message:'Invalid id'})
   }
 
-  Project.findByIdAndUpdate(id, req.body) // gets the objects in tasks
-    .then(() => {
-      res.json({message: 'Project Updated'})
+  Project.findByIdAndUpdate(id, req.body, {new:true}) // gets the objects in tasks
+    .then((project) => {
+      res.json(project)
     })
     .catch((err) => {
       res

@@ -13,7 +13,7 @@ const projectSchema = new Schema({
   author: {type: Schema.Types.ObjectId, ref:'User'},
   opinions:[{user: Schema.Types.ObjectId, rating: Number, comment: String }],
   // file: String,
-  isPrivate: Boolean,
+  isPrivate: {type:Boolean, default:false},
 });
 
 const Project = mongoose.model('Project', projectSchema);
