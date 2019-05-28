@@ -68,7 +68,11 @@ router.get('/:id', isLoggedIn(), (req,res)=>{
     .json({message:'Invalid id'})
   }
     
-  Project.findById(id).populate('characters')
+  Project.findById(id).
+        populate({
+          path: 'opinions.user',
+          model:'User'
+  })
   .then((foundProject) => {
     // if(foundProject.author===req.session.currentUser._id){
       res.json(foundProject)

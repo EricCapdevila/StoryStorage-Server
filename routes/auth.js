@@ -14,6 +14,7 @@ const {
 
 router.get('/me', isLoggedIn(), (req, res, next) => {
   User.findById(req.session.currentUser)
+  // .populate('stories')
   .then((user) => {
     res.json(user);
   })
@@ -27,7 +28,7 @@ router.get('/me', isLoggedIn(), (req, res, next) => {
 
 
 router.get('/users', (req,res)=>{
-  User.find()//.populate('stories') 
+  User.find().populate('stories') 
     .then((allUsers) => {
       res.json(allUsers)
     })

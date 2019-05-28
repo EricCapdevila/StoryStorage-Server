@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  stories: [{type: Schema.Types.ObjectId, ref:'Story'}],
+  stories: [{type: Schema.Types.ObjectId, ref:'Project'}],
   // ideas:[{title: String, description:String}],
-  friends: [{type: Schema.Types.ObjectId, ref:'Users'}],
+  friends: [{type: Schema.Types.ObjectId, ref:'User'}],
   // color: String
 }, {
   timestamps: {
