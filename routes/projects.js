@@ -44,7 +44,7 @@ router.post('/', isLoggedIn(), (req,res)=> {
 // GET '/projects'
 
 router.get('/', (req,res)=>{
-  Project.find()
+  Project.find().populate('author')
   .then((allProjects) => {
     res.json(allProjects)
   })
@@ -68,11 +68,11 @@ router.get('/:id', isLoggedIn(), (req,res)=>{
     .json({message:'Invalid id'})
   }
     
-  Project.findById(id).
-        populate({
-          path: 'opinions.user',
-          model:'User'
-  })
+  Project.findById(id)
+  //       populate({
+  //         path: 'opinions.user',
+  //         model:'User'
+  // })
   .then((foundProject) => {
     // if(foundProject.author===req.session.currentUser._id){
       res.json(foundProject)

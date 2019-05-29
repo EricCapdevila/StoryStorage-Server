@@ -11,7 +11,7 @@ const projectSchema = new Schema({
   timeline:[String],
   misc:[{title: String, description:String}],
   author: {type: Schema.Types.ObjectId, ref:'User'},
-  opinions:[{user:{type: Schema.Types.ObjectId, ref:'User'}, rating: Number, comment: String }],
+  opinions:[{user:String, rating: Number, comment: String }],
   // file: String,
   isPrivate: {type:Boolean, default:false},
 });
