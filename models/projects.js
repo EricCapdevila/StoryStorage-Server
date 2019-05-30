@@ -5,7 +5,7 @@ const projectSchema = new Schema({
   title: String,
   genre:{type: String, enum: ['Historical', 'Crime', 'Science Fiction','Fantasy', 'Romance', 'Horror', 'Other']},
   summary: String,
-  chapters:[{title:String, plot:String }],
+  chapters:[{title:String, plot:String, number:Number}],
   characters:[{type: Schema.Types.ObjectId, ref: 'Character'}],
   locations:[String],
   timeline:[String],
