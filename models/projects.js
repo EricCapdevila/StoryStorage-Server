@@ -12,7 +12,7 @@ const projectSchema = new Schema({
   misc:[{title: String, description:String}],
   author: {type: Schema.Types.ObjectId, ref:'User'},
   opinions:[{user:String, rating: Number, comment: String }],
-  // file: String,
+  file: String,
   isPrivate: {type:Boolean, default:false},
 });
 
